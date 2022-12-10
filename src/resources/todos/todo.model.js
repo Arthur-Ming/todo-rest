@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const todoSchema = new Schema(
   {
@@ -8,7 +8,7 @@ const todoSchema = new Schema(
     },
     description: {
       type: String,
-      default: "",
+      default: '',
     },
   },
   {
@@ -24,6 +24,6 @@ const todoSchema = new Schema(
   }
 );
 
-const ToDo = model("ToDo", todoSchema);
+const ToDo = model('ToDo', todoSchema);
 
 export default ToDo;

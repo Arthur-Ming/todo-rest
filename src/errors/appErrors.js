@@ -1,4 +1,4 @@
-import { StatusCodes } from "http-status-codes";
+import { StatusCodes } from 'http-status-codes';
 
 class AppError extends Error {
   constructor(message) {
@@ -8,9 +8,7 @@ class AppError extends Error {
 
 export class NotFoundError extends AppError {
   constructor(entity, params, message) {
-    super(
-      message || `Couldn't find a(an) ${entity} with: ${JSON.stringify(params)}`
-    );
+    super(message || `Couldn't find a(an) ${entity} with: ${JSON.stringify(params)}`);
     this.status = StatusCodes.NOT_FOUND;
   }
 }
@@ -28,18 +26,10 @@ export class EntityExistsError extends AppError {
     this.status = StatusCodes.EXPECTATION_FAILED;
   }
 }
-/* 
-export class AuthorizationError extends AppError {
-  constructor(message) {
-    super(message || getStatusText(UNAUTHORIZED));
-    this.status = StatusCodes.UNAUTHORIZED;
-  }
-}
 
-export class AuthenticationError extends AppError {
+export class UnprocessableEntityError extends AppError {
   constructor(message) {
-    super(message || getStatusText(FORBIDDEN));
-    this.status = StatusCodes.FORBIDDEN;
+    super(message);
+    this.status = StatusCodes.UNPROCESSABLE_ENTITY;
   }
 }
- */
