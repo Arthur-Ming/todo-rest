@@ -11,5 +11,6 @@ mongoose
   .catch((error) => console.log(error));
 
 app.listen(PORT, (error) => {
+  // eslint-disable-next-line no-unused-expressions
   error ? console.log(error) : console.log(`listening port ${PORT}`);
 });
