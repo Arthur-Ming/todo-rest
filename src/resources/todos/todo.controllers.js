@@ -6,47 +6,31 @@ export const getTodos = async (req, res) => {
   res.send(todos);
 };
 
-export const getTodoById = async (req, res, next) => {
+export const getTodoById = async (req, res) => {
   const { todoId } = req.params;
 
-  try {
-    const todo = await get(todoId);
-    res.send(todo);
-  } catch (err) {
-    return next(err);
-  }
+  const todo = await get(todoId);
+  res.send(todo);
 };
 
-export const createTodo = async (req, res, next) => {
+export const createTodo = async (req, res) => {
   const body = req.body;
 
-  try {
-    const todo = await create(body);
-    res.status(StatusCodes.OK).send(todo);
-  } catch (err) {
-    return next(err);
-  }
+  const todo = await create(body);
+  res.status(StatusCodes.OK).send(todo);
 };
 
-export const deleteTodo = async (req, res, next) => {
+export const deleteTodo = async (req, res) => {
   const { todoId } = req.params;
 
-  try {
-    await remove(todoId);
-    res.sendStatus(StatusCodes.OK);
-  } catch (err) {
-    return next(err);
-  }
+  await remove(todoId);
+  res.sendStatus(StatusCodes.OK);
 };
 
-export const updateTodo = async (req, res, next) => {
+export const updateTodo = async (req, res) => {
   const { todoId } = req.params;
   const body = req.body;
 
-  try {
-    const todo = await update(todoId, body);
-    res.status(StatusCodes.OK).send(todo);
-  } catch (err) {
-    return next(err);
-  }
+  const todo = await update(todoId, body);
+  res.status(StatusCodes.OK).send(todo);
 };

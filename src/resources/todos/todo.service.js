@@ -18,13 +18,18 @@ export const create = async (todo) => {
 };
 
 export const remove = async (todoId) => {
-  await ToDo.findByIdAndDelete(todoId);
+  const todo = await ToDo.findByIdAndDelete(todoId);
+
+  if (!todo) {
+    throw new NotFoundError('todo', { id: todoId });
+  }
 };
 
 export const update = async (todoId, body) => {
   const todo = await ToDo.findByIdAndUpdate(todoId, body, {
-    returnDocument: 'after',
+    new: true,
   });
+
   if (!todo) {
     throw new NotFoundError('todo', { id: todoId });
   }
