@@ -23,8 +23,8 @@ export const createTodo = async (req, res) => {
 export const deleteTodo = async (req, res) => {
   const { todoId } = req.params;
 
-  await remove(todoId);
-  res.sendStatus(StatusCodes.OK);
+  const todo = await remove(todoId);
+  res.send(todo);
 };
 
 export const updateTodo = async (req, res) => {
