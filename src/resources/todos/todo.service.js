@@ -23,6 +23,7 @@ export const remove = async (todoId) => {
   if (!todo) {
     throw new NotFoundError('todo', { id: todoId });
   }
+  return todo;
 };
 
 export const update = async (todoId, body) => {

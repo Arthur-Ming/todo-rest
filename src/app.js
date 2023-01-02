@@ -1,23 +1,14 @@
-import express from 'express';
-import cors from 'cors';
-import todoRoutes from './resources/todos/todo.routes.js';
-import bodyParser from 'body-parser';
+import Koa from 'koa';
+import bodyParser from 'koa-bodyparser';
+import todoRouter from './resources/todos/todo.routes.js';
 import errorHandler from './errors/errorHandler.js';
-import { StatusCodes, getReasonPhrase } from 'http-status-codes';
-import { NotFoundError } from './errors/appErrors.js';
 
-const app = express();
-
-app.use(cors());
-
-app.use(bodyParser.json());
-
-app.use(todoRoutes);
-
-app.use((_req, _res, _next) => {
-  throw new NotFoundError(null, null, getReasonPhrase(StatusCodes.NOT_FOUND));
-});
+const app = new Koa();
 
 app.use(errorHandler);
+
+app.use(bodyParser());
+
+app.use(todoRouter.routes());
 
 export default app;
